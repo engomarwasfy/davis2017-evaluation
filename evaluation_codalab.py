@@ -63,7 +63,7 @@ J, F = metrics_res['J'], metrics_res['F']
 
 # Generate output to the stdout
 seq_names = list(J['M_per_object'].keys())
-if gt_set == "val" or gt_set == "train" or gt_set == "test-dev":
+if gt_set in {"val", "train", "test-dev"}:
     sys.stdout.write("----------------Global results in CSV---------------\n")
     g_measures = ['J&F-Mean', 'J-Mean', 'J-Recall', 'J-Decay', 'F-Mean', 'F-Recall', 'F-Decay']
     final_mean = (np.mean(J["M"]) + np.mean(F["M"])) / 2.

@@ -64,7 +64,7 @@ class DAVISEvaluation(object):
         return j_metrics_res[row_ind, col_ind, :], f_metrics_res[row_ind, col_ind, :]
 
     def evaluate(self, res_path, metric=('J', 'F'), debug=False):
-        metric = metric if isinstance(metric, tuple) or isinstance(metric, list) else [metric]
+        metric = metric if isinstance(metric, (tuple, list)) else [metric]
         if 'T' in metric:
             raise ValueError('Temporal metric not supported!')
         if 'J' not in metric and 'F' not in metric:
