@@ -31,7 +31,12 @@ class DAVIS(object):
         self.img_path = os.path.join(self.root, 'JPEGImages', resolution)
         annotations_folder = 'Annotations' if task == 'semi-supervised' else 'Annotations_unsupervised'
         self.mask_path = os.path.join(self.root, annotations_folder, resolution)
-        year = '2019' if task == 'unsupervised' and (subset == 'test-dev' or subset == 'test-challenge') else '2017'
+        year = (
+            '2019'
+            if task == 'unsupervised' and subset in ['test-dev', 'test-challenge']
+            else '2017'
+        )
+
         self.imagesets_path = os.path.join(self.root, 'ImageSets', year)
 
         self._check_directories()
@@ -98,8 +103,7 @@ class DAVIS(object):
         return masks, masks_void, masks_id
 
     def get_sequences(self):
-        for seq in self.sequences:
-            yield seq
+        yield from self.sequences
 
 
 if __name__ == '__main__':

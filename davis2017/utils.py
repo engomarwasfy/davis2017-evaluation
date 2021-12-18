@@ -152,7 +152,7 @@ def db_statistics(per_frame_values):
     ids = np.round(np.linspace(1, len(per_frame_values), N_bins + 1) + 1e-10) - 1
     ids = ids.astype(np.uint8)
 
-    D_bins = [per_frame_values[ids[i]:ids[i + 1] + 1] for i in range(0, 4)]
+    D_bins = [per_frame_values[ids[i]:ids[i + 1] + 1] for i in range(4)]
 
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", category=RuntimeWarning)

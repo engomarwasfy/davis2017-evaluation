@@ -22,7 +22,7 @@ def test_task(task, gt_set, res_path, J_target=None, F_target=None, metric=('J',
     J = metrics_res['J'] if 'J' in metric else {'M': np.zeros(num_seq), 'R': np.zeros(num_seq), 'D': np.zeros(num_seq)}
     F = metrics_res['F'] if 'F' in metric else {'M': np.zeros(num_seq), 'R': np.zeros(num_seq), 'D': np.zeros(num_seq)}
 
-    if gt_set == "val" or gt_set == "train" or gt_set == "test-dev":
+    if gt_set in ["val", "train", "test-dev"]:
         sys.stdout.write("----------------Global results in CSV---------------\n")
         g_measures = ['J&F-Mean', 'J-Mean', 'J-Recall', 'J-Decay', 'F-Mean', 'F-Recall', 'F-Decay']
         final_mean = (np.mean(J["M"]) + np.mean(F["M"])) / 2. if 'J' in metric and 'F' in metric else 0
